@@ -21,7 +21,7 @@
                 <MenuItem Header="Beenden"/>
             </MenuItem>
             <MenuItem Header="Bearbeiten">
-                <MenuItem Header="Import"/>
+                <MenuItem Header="Import" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Hilfe">
                 <MenuItem Header="Info"/>
@@ -151,7 +151,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RichTextBox x:Name="rtbOutput" Margin="5" IsReadOnly="True" Background="LightGray" FontSize="12"/>
+                        <TextBox x:Name="txtOutput" Margin="5" IsReadOnly="True" Background="LightGray" FontSize="12"/>
                     </Grid>
                 </GroupBox>
             </Grid>

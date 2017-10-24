@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HoursOfWorkLib;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace HoursOfWork
 {
     /// <summary>
@@ -23,6 +26,15 @@ namespace HoursOfWork
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Import importer = new Import();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            importer.ImportCSVFile(openFileDialog.FileName);
+            this.txtOutput.Text = openFileDialog.FileName;
         }
     }
 }
