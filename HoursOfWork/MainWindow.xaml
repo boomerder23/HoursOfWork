@@ -5,8 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HoursOfWork"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="768" Width="1024" MinHeight="768" MinWidth="1024">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Beenden"/>
+            </MenuItem>
+            <MenuItem Header="Bearbeiten">
+                <MenuItem Header="Import"/>
+            </MenuItem>
+            <MenuItem Header="Hilfe">
+                <MenuItem Header="Info"/>
+            </MenuItem>
+        </Menu>
+        <GroupBox Header="Zeiterfassung:" Grid.Column="0" Grid.Row="1" Grid.RowSpan="5">
+            <DataGrid x:Name="dgOverview" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Datum"/>
+                    <DataGridTextColumn Header="Beginn"/>
+                    <DataGridTextColumn Header="Ende"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Header="Zusammenfassung:" Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Zeitraum:" Grid.Column="0" Grid.Row="0" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="rbPeriod" IsChecked="True" GroupName="TimeInterval" Content="Datum" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Label Content="vom:"  IsEnabled="{Binding ElementName=rbPeriod, Path=IsChecked}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right"/>
+                        <DatePicker x:Name="datepickerOverviewPeriodFrom" IsEnabled="{Binding ElementName=rbPeriod, Path=IsChecked}" Grid.Column="3" Grid.Row="0"/>
+                        <Label Content="bis:" IsEnabled="{Binding ElementName=rbPeriod, Path=IsChecked}" Grid.Column="4"  Grid.Row="0" HorizontalAlignment="Right"/>
+                        <DatePicker x:Name="datepickerPeriodTo" IsEnabled="{Binding ElementName=rbPeriod, Path=IsChecked}" Grid.Column="5" Grid.Row="0"/>
+
+                        <RadioButton x:Name="rbWeek" GroupName="TimeInterval" Content="Kalenderwoche" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Label Content="Begin:" IsEnabled="{Binding ElementName=rbWeek, Path=IsChecked}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right"/>
+                        <TextBox x:Name="txtOverviewWeekBegin" IsEnabled="{Binding ElementName=rbWeek, Path=IsChecked}" Grid.Column="3" Grid.Row="1"/>
+                        <Label Content="Ende:" IsEnabled="{Binding ElementName=rbWeek, Path=IsChecked}" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Right"/>
+                        <TextBox x:Name="txtOverviewWeekEnd" IsEnabled="{Binding ElementName=rbWeek, Path=IsChecked}" Grid.Column="5" Grid.Row="1"/>
+
+                        <RadioButton x:Name="rbAll" GroupName="TimeInterval" Content="gesamt" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+                
+                
+            </Grid>    
+        </GroupBox>
+        <GroupBox Header="Export:" Grid.Column="1" Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
